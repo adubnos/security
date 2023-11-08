@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+<head>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row mt-5 mb-5">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header"><h2 th:text="|회원 ${member.getUsername()}의 정보|"></h2></div>
+                <div class="card-body">
+                    <div class="mt-3 mb-3">
+                        <div class="mt-3 mb-3">
+                            <label class="form-label" for="id">ID : </label>
+                            <input type="text" class="form-control" id="id" name="id" th:value="${member.id}" readonly>
+                        </div>
+                        <label class="btn-group-label" for="role">등급 : </label>
+                        <div class="btn-group" id="role">
+                            <input type="radio" class="form-check-input" name="role" id="role1" value="ROLE_ADMIN" th:checked="${member.role=='ROLE_ADMIN'}" disabled>
+                            <label class="form-check-label" for="role1">&nbsp;관리자&nbsp;&nbsp;&nbsp;</label>
+                            <input type="radio" class="form-check-input" name="role" id="role2" value="ROLE_USER" th:checked="${member.role=='ROLE_USER'}" disabled>
+                            <label class="form-check-label" for="role2">&nbsp;멤버&nbsp;&nbsp;&nbsp;</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/member/update/username}" class="btn btn-secondary">회원정보수정</a>
+                    <a th:href="@{/member/withdrawal}" class="btn btn-danger">회원탈퇴</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
